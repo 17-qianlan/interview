@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        <script>
+           let str = 'abcdefg';
+           if (/efg/ig.test(str)) {
+               // substr(index, num)   返回其截取的部分
+               console.log(str.substr(str.indexOf('efg'), 3));
+           }
+        </script>
+    </body>
+</html>

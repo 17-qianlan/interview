@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        <script>
+            let str = 'abdcadeofadeifaeadrfa';
+            let arr = {};
+            for (const item of str) {
+                if (!arr[item]) {
+                    arr[item] = 1;
+                } else {
+                    arr[item]++;
+                }
+            }
+            let max = -1;
+            let max_key = '';
+            for (var key in arr){
+                if (max < arr[key]) {
+                    max = arr[key];
+                    max_key = key;
+                }
+            }
+            console.log(max, max_key);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+    </head>
+    <body>
+        <div id="container">88888888</div>
+        <script>
+            function Ele(eleType) {
+                this.Ele = document.getElementById(eleType);
+            }
+
+            Ele.prototype.h = function(val) {
+                let ele = this.Ele;
+                if (val) {
+                    ele.innerHTML = val;
+                    return this;
+                } else {
+                    return this;
+                }
+            }
+
+            Ele.prototype.on = function(type, fn, isCapture) {
+                let ele = this.Ele;
+                ele.addEventListener(type, fn, isCapture);
+            }
+            let div = new Ele('container');
+            // 为空表示要绑定事件, 默认是冒泡
+            div.h().on('click', () => {
+                alert(1);
+            })
+        </script>
+    </body>
+</html>

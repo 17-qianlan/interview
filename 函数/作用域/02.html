@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Test</title>
+    </head>
+    <body>
+        <script>
+            var a = 100
+            function fn(){
+                var a = 200
+                console.log('fn',a)
+            }
+            fn()
+            console.log('global',a)
+        </script>
+    </body>
+</html>

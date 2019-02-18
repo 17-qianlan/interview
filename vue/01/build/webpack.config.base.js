@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const createVueLoader = require('./vue-loader.config');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -15,12 +16,24 @@ let config = {
     module: {
         rules: [
             {
+                test: /\.(vue|js|jsx)$/,
+                loader: 'eslint-loader',
+                exclude: /node_module/,
+                enforce: 'pre'
+            },
+            {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: createVueLoader(isDev)
             },
             {
                 test: /\.s?css$/,
-                use: ['vue-style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                use: ['vue-style-loader', isDev? 'style-loader': MiniCssExtractPlugin.loader, 'css-loader', {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }, 'sass-loader']
             },
             {
                 test: /\.(png|svg|gif|jpg|jpeg)$/,
@@ -33,6 +46,11 @@ let config = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                loader: 'babel-loader',
+                exclude: /node_module/
             }
         ]
     },

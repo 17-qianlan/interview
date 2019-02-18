@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "target": ["> 1%", "latest 20 versions", "not ie <= 8"]
+      }
+    ],
+    "stage-1"
+  ],
+  "plugins": [
+    [
+      "transform-vue-jsx",
+      "transform-runtime",
+      {
+        "polyfill": false
+      }
+    ]
+  ],
+  "comments": false
+}

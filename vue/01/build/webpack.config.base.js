@@ -18,7 +18,7 @@ let config = {
             {
                 test: /\.(vue|js|jsx)$/,
                 loader: 'eslint-loader',
-                exclude: /node_module/,
+                exclude: /node_modules/,
                 enforce: 'pre'
             },
             {
@@ -39,10 +39,34 @@ let config = {
                 test: /\.(png|svg|gif|jpg|jpeg)$/,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
                             limit: 1024,
-                            name: 'resource/[path][name]:[hash:8].[ext]'
+                            name: 'images/[name].[hash:8].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            name: 'media/[name].[hash:8].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(ttf|eot|otf|woff)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            name: 'fonts/[name].[hash:8].[ext]'
                         }
                     }
                 ]
@@ -50,7 +74,7 @@ let config = {
             {
                 test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
-                exclude: /node_module/
+                exclude: /node_modules/
             }
         ]
     },

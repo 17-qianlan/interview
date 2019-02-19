@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        {{msg}}
+        <router-view />
     </div>
 </template>
 
@@ -22,18 +22,5 @@
 </script>
 
 <style scoped lang="scss">
-    :root {
-        --red: red;
-    }
-    #app{
-        display: flex;
-        width: 200px;
-        height: 50px;
-        border-radius: 10px;
-        background: green;
-        color: var(--red);
-        text-align: center;
-        line-height: 50px;
-        font-size: 25px;
-    }
+
 </style>

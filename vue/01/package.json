@@ -8,8 +8,8 @@
     "build": "cross-env NODE_ENV=productions webpack --config build/webpack.config.client.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
     "clean": "rimraf dist && npm run build",
-    "lint": "eslint --ext .js --ext .vue client/",
-    "lint-fix": "eslint --fix --ext .js --ext .vue client/",
+    "lint": "eslint --ext .js --ext .vue client/ server/ server.js",
+    "lint-fix": "eslint --fix --ext .js --ext .vue client/ server/ server.js",
     "start": "npm run lint-fix && npm run clean && npm run dev"
   },
   "author": "",
@@ -52,9 +52,15 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "axios": "^0.18.0",
     "element-ui": "^2.5.4",
     "jquery": "^3.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "koa": "^2.7.0",
+    "koa-body": "^4.0.8",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.4.13",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0"

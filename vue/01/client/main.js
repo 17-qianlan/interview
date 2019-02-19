@@ -19,6 +19,7 @@ Vue.use(Form);
 Vue.use(Button);
 Vue.use(Input);
 Vue.use(FormItem);
+
 new Vue({
     el: '#app',
     render: (h) => h(App),

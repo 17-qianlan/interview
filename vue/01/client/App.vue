@@ -13,10 +13,7 @@
             };
         },
         mounted() {
-            console.log(new Date().getTime());
-            this.$nextTick(function() {
-                console.log(new Date().getTime());
-            });
+
         }
     };
 </script>

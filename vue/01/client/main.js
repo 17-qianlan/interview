@@ -7,12 +7,18 @@ import App from './App';
 
 // .js
 import createRouter from './router/router';
+import $ from 'jquery';
+import '../node_modules/bootstrap/dist/js/bootstrap.min';
 
 // .css
 import 'element-ui/lib/theme-chalk/index.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 // create
 const router = createRouter();
+
+// prototype
+Vue.prototype.$ = $;
 
 //mount
 Vue.use(Form);

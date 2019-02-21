@@ -11,9 +11,6 @@
             return {
                 msg: 999
             };
-        },
-        mounted() {
-            console.log(this.$);
         }
     };
 </script>

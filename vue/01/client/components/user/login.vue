@@ -1,6 +1,6 @@
 <template>
-    <div class="register">
-        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+    <div class="login container">
+        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm form-group col-md-6 ml-auto ml-auto mr-auto mt-md-5">
             <el-form-item label="账号" prop="user">
                 <el-input v-model="ruleForm2.user"></el-input>
             </el-form-item>
@@ -8,7 +8,7 @@
                 <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item class="btn">
-                <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
+                <el-button type="primary" @click="submitForm('ruleForm2')" class="offset-md-3">登录</el-button>
                 <el-button @click="resetForm('ruleForm2')">重置</el-button>
             </el-form-item>
         </el-form>
@@ -63,6 +63,12 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         // alert('submit!');  通过检测
+                        const opt = {username: this.ruleForm2.user, password: this.ruleForm2.pass};
+                        this.axios.post('/user/login', opt).then(({data}) => {
+                            console.log(data);
+                        }).catch( error => {
+                            console.log(error);
+                        });
                     } else {
                         // console.log('error submit!!'); 没有通过检测
                         return false;
@@ -78,15 +84,4 @@
 
 <style scoped lang="scss">
     @import url("//unpkg.com/element-ui@2.5.4/lib/theme-chalk/index.css");
-    .register{
-        width: 500px;
-        margin: 100px auto;
-        .demo-ruleForm{
-            width: 500px;
-            .btn{
-                width: 300px;
-                margin: auto;
-            }
-        }
-    }
 </style>

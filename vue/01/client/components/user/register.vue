@@ -1,6 +1,6 @@
 <template>
-    <div class="register">
-        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+    <div class="register container">
+        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm form-group col-md-6 ml-auto ml-auto mr-auto mt-md-5">
             <el-form-item label="账号" prop="user">
                 <el-input v-model="ruleForm2.user"></el-input>
             </el-form-item>
@@ -10,8 +10,8 @@
             <el-form-item label="确认密码" prop="checkPass">
                 <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item class="btn">
-                <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
+            <el-form-item>
+                <el-button type="primary" @click="submitForm('ruleForm2')" class="offset-md-3">注册</el-button>
                 <el-button @click="resetForm('ruleForm2')">重置</el-button>
             </el-form-item>
         </el-form>
@@ -60,9 +60,9 @@
             };
             return {
                 ruleForm2: {
+                    user: '',
                     pass: '',
-                    checkPass: '',
-                    user: ''
+                    checkPass: ''
                 },
                 rules2: {
                     pass: [
@@ -81,7 +81,12 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        // alert('submit!'); 通过检测
+                        const opt = {username: this.ruleForm2.user, password: this.ruleForm2.pass};
+                        this.axios.post('/user/res', opt).then(({data}) => {
+                            console.log(data);
+                        }).catch( error => {
+                            console.log(error);
+                        });
                     } else {
                         // console.log('error submit!!'); 没有通过检测
                         return false;
@@ -91,6 +96,9 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             }
+        },
+        mounted() {
+
         }
     };
 </script>
@@ -98,14 +106,6 @@
 <style scoped lang="scss">
     @import url("//unpkg.com/element-ui@2.5.4/lib/theme-chalk/index.css");
     .register{
-        width: 500px;
-        margin: 100px auto;
-        .demo-ruleForm{
-            width: 500px;
-            .btn{
-                width: 300px;
-                margin: auto;
-            }
-        }
+        height: 300px;
     }
 </style>

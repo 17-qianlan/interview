@@ -8,6 +8,7 @@ import App from './App';
 // .js
 import createRouter from './router/router';
 import $ from 'jquery';
+import Axios from 'axios';
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
 
 // .css
@@ -19,6 +20,7 @@ const router = createRouter();
 
 // prototype
 Vue.prototype.$ = $;
+Vue.prototype.axios = Axios;
 
 //mount
 Vue.use(Form);

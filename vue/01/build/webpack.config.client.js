@@ -21,7 +21,10 @@ const dev = {
         index: '/index.html'
     },
     proxy: {
-
+        '/user': {
+            target: 'http://localhost:3000/',
+            changeOrigin: true
+        }
     }
 };
 

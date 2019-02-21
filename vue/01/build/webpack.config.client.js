@@ -22,7 +22,7 @@ const dev = {
     },
     proxy: {
         '/user': {
-            target: 'http://localhost:3000/',
+            target: 'http://localhost:3030/',
             changeOrigin: true
         }
     }

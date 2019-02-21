@@ -68,7 +68,9 @@ exports.login = async ctx => {
         if (data.length !== 0){
             ctx.body = {
                 isLoginFailure: false,
-                isLoginSuccess: true
+                isLoginSuccess: true,
+                token: data[0].token,
+                username: data[0].username
             };
         } else {
            ctx.body = {

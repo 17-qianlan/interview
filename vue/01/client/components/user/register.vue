@@ -82,11 +82,25 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         const opt = {username: this.ruleForm2.user, password: this.ruleForm2.pass};
+                        const that = this;
                         this.axios.post('/user/res', opt).then(({data}) => {
-                            console.log(data);
+                            if (data.isRegisterSuccess) {
+                                that.$message({
+                                    message: '注册成功',
+                                    type: 'success'
+                                });
+                                that.$router.push({
+                                    path: '/login'
+                                });
+                            }
                         }).catch( error => {
                             console.log(error);
                         });
+                        /*this.$store.dispatch('Login', opt).then( data => {
+                            console.log(data);
+                        }).catch(error => {
+                            console.log(error);
+                        });*/
                     } else {
                         // console.log('error submit!!'); 没有通过检测
                         return false;

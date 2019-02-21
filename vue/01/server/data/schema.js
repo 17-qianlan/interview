@@ -1,6 +1,6 @@
 const mongo = require('mongoose');
 
-const db = mongo.createConnection('mongodb://localhost:27017/QQMusic',{
+const db = mongo.createConnection('mongodb://39.106.122.216:27017/QQMusic',{
     useNewUrlParser: true
 });
 

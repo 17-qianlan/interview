@@ -56,7 +56,7 @@ exports.login = async ctx => {
             if (data.length !== 0) {
                 if (crateCrypto === data[0]['password']) {
                     data[0]['token'] = token;
-                    data.save((error, data) => {
+                    data[0].save((error, data) => {
                         if (error) return reject(error);
                     });
                     return resolve(data);
@@ -78,7 +78,6 @@ exports.login = async ctx => {
                isLoginSuccess: false
            };
         }
-
     }).catch(err => {
         ctx.body = {
             isLoginFailure: true,

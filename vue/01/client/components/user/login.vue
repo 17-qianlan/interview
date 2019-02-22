@@ -63,9 +63,16 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         // alert('submit!');  通过检测
+                        const that = this;
                         const opt = {username: this.ruleForm2.user, password: this.ruleForm2.pass};
                         this.axios.post('/user/login', opt).then(({data}) => {
-                            console.log(data);
+                            if (data.isLoginSuccess) {
+                                that.$message({
+                                    message: '登录成功',
+                                    type: 'success'
+                                });
+                                that.$store.commit('UserLogin', data);
+                            }
                         }).catch( error => {
                             console.log(error);
                         });

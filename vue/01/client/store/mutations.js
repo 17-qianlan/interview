@@ -4,12 +4,10 @@ export default {
     UserLogin(state, {token, username}) {
         state.token = token;
         state.username = username;
-        tool.setItem('token', token);
-        tool.setItem('username', username);
+        tool.setItem('user', {token, username});
     },
     UserLogOut(state) {
-        tool.removerItem('token');
-        tool.removerItem('username');
+        tool.removerItem('user');
         state.token = state.username = '';
     }
 };

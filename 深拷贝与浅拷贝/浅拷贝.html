@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+    </head>
+    <body>
+        <script>
+            // 浅拷贝, 顾名思义, 直接引用, 引用的改变会引起被引用的改变
+            // Object才会改变
+            // 除了引用类型的会改变以外, 其他的不会改变, 如String, Number
+            // 这里如果该值会改变, 那么可以使用const, 否则不可以使用
+            (function() {
+                const arr = [0, 1, 2, 3];
+                const arr1 = arr;
+                arr1.push(4);
+                console.log(arr);
+                console.log(arr1);
+                const obj = {
+                    a: 1,
+                    b: 2
+                }
+                const obj1 = obj;
+                obj.c = 2;
+                console.log(obj1);
+                console.log(obj);
+                const str = '2';
+                let str1 = str;
+                str1 = str1 + '1';
+                console.log(str1);// 21
+                console.log(str);// 2
+                const num = 10;
+                let num1 = num;
+                num1 = num1 + 10;
+                console.log(num1);// 20
+                console.log(num);// 10
+            })();
+        </script>
+    </body>
+</html>

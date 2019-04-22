@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+    </head>
+    <body>
+        <script>
+            (function() {
+                var arr = [
+                    0,
+                    1,
+                    {
+                        a: 1,
+                        b: 2
+                    },
+                    2
+                ];
+                var obj = {
+                    a: 1,
+                    b: ['1', '2']
+                }
+                function copy(arr) {
+                    if (/(string|number)/ig.test(typeof arr)){
+                        throw new Error('请正确传入参数');
+                        return false;
+                    }
+                    var _arr = arr instanceof Array? []: {};
+                    for(var key in arr) {
+                        var _key = arr[key];
+                        _arr[key] = /object/ig.test(typeof _key)? copy(_key): _key;
+                    }
+                    return _arr;
+                }
+                var a = copy(arr);
+                console.log(arr[2]);
+                // console.log(obj);
+                // a.b.push(5);
+                a.push(5);
+                a[2].c = 3;
+                console.log(a[2]);
+            })();
+        </script>
+    </body>
+</html>

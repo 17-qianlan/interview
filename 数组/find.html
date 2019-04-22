@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        
+        <script>
+            const arr = [10, 20, 30, 40, 50, NaN];
+            console.log(arr.find((item) => {
+                return Object.is(NaN, item);
+            }));
+            console.log(arr.find((item) => {
+                return item === 70;
+            }));
+            console.log(arr.find((item) => {
+                return item > 30;
+            }));// 40
+        </script>
+    </body>
+</html>

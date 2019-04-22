@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <script>
+            let aDiv = document.getElementsByTagName('div');
+            // let arr = Array.from(aDiv);
+            let arr = [...aDiv];
+            console.log(arr instanceof Array);
+        </script>
+    </body>
+</html>

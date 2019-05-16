@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        
+        <script>
+            setTimeout(() => {
+                console.log('A');
+            }, 0);
+            const obj = {
+                func: function () {
+                    setTimeout(function () {
+                        console.log('B');
+                    }, 0);
+                    return new Promise(function (resolve) {
+                        console.log('C');
+                        resolve();
+                    });
+                },
+            };
+            obj.func().then(function() {
+                console.log('D');
+            });
+            console.log('E');
+            // c e d a b
+        </script>
+    </body>
+</html>

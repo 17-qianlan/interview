@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+
+        <script>
+            (function() {
+                function Fn1() {
+                    var a = 100;
+                    return function() {
+                        console.log(a);
+                        return 2;
+                    }
+                };
+                function Fn2(fn) {
+                   var a = 200;
+                    console.log(fn());
+                }
+                var fn = Fn1();
+                Fn2(fn);
+            })();
+        </script>
+    </body>
+</html>

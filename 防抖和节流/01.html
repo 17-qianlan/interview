@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            img {
+                display: block;
+                width: 400px;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <script src="./goodList.js"></script>
+        <script>
+            (function() {
+                const oBox = document.querySelector('.box');
+                const viewPort = window.innerHeight || document.documentElement.clientHeight;
+                for (const val of data) {
+                    let oImg = document.createElement('img');
+                    oImg.src = '005.jpg';
+                    oImg.setAttribute('data-src', val.src);
+                    oBox.appendChild(oImg);
+                }
+                const oImg = document.getElementsByTagName('img');
+                function throttle(fn, delay) {// 节流, 不重置时间, 把请求堆到最后一次执行, 操作过快, 性能可能会爆炸
+                    let last = 0;
+                    return function() {
+                        let context = this;
+                        let args = arguments;
+                        let now = +new Date();
+                        if (now - last >= delay) {
+                            last = now;
+                            fn.apply(context, args);
+                        }
+                    }
+                };
+                function debounce(fn, delay) {//防抖, 重置时间, 把请求堆到最后一次执行, 操作过快, 性能可能会爆炸
+                    let timer;
+                    return function() {
+                        let context = this;
+                        let args = arguments;
+                        if (timer) clearTimeout(timer);
+                        timer = setTimeout(function() {
+                            fn.apply(context, args)
+                        }, delay);
+                    }
+                };
+                function __throttle(fn, delay) {
+                    let last = 0, timer;
+                    return function() {
+                        let context = this;
+                        let args = arguments;
+                        let now = +new Date();
+                        if (now-last <= delay) {
+                            clearTimeout(timer);
+                            timer = setTimeout(function() {
+                                last = now;
+                                fn.apply(context, args);
+                            }, delay);
+                        } else {
+                            last = now;
+                            fn.apply(context, args);
+                        }
+                    }
+                }
+                function lazyLoad() {
+                    for (let i=0; i<oImg.length; i++) {
+                        const distance = viewPort - oImg[i].getBoundingClientRect().top;
+                        if (distance >= 0) {
+                            oImg[i].src = oImg[i].getAttribute('data-src');
+                        }
+                    }
+                };
+                lazyLoad();
+                // window.addEventListener('scroll', lazyLoad, false);
+                const _debounce = debounce(lazyLoad, 1000);
+                const _throttle = throttle(lazyLoad, 1000);
+                const ___throttle = __throttle(lazyLoad, 100);
+                // window.addEventListener('scroll', _debounce, false);
+                // window.addEventListener('scroll', _throttle, false);
+                window.addEventListener('scroll', ___throttle, false);
+            })();
+        </script>
+    </body>
+</html>
